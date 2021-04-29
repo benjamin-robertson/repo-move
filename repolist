@@ -1,0 +1,2 @@
+SourceRepo DestinationRepo - Do not remove this line, script doesn't read first line
+git@github.com:benjamin-robertson/control-repo-lab.git ssh://ec2-3-24-232-189.ap-southeast-2.compute.amazonaws.com:22/PuppetTeam/Puppet/_git/control-repo-lab
