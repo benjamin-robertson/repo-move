@@ -41,4 +41,9 @@ for ((x=0;x < $count; x=$x + 2)); do
     git checkout -B $branch origin/$branch                                                                                                        
     git pull origin $branch                                                                                                                       
   done; 
+
+  #change the remote git server and push
+  git remote set-url origin ${repos[$x2]}
+  git push -u --all
+  cd ..
 done
