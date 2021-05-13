@@ -33,9 +33,12 @@ for ((x=0;x < $count; x=$x + 2)); do
   x2=$(($x + 1))
   echo "Cloning repo ${repos[$x]} to ${repos[$x2]}"
 
-  git clone --mirror ${repos[$x]}
   # get filename
   folder=`echo ${repos[$x]} | awk -F "/" '{ print $2 }' | sed 's/.git//g'`
+ 
+  # copy repo locally
+  git clone --mirror ${repos[$x]} $folder
+
   cd $folder
 
   #change the remote git server and push
