@@ -33,17 +33,14 @@ for ((x=0;x < $count; x=$x + 2)); do
   x2=$(($x + 1))
   echo "Cloning repo ${repos[$x]} to ${repos[$x2]}"
 
-  git clone ${repos[$x]}
+  git clone --mirror ${repos[$x]}
   # get filename
   folder=`echo ${repos[$x]} | awk -F "/" '{ print $2 }' | sed 's/.git//g'`
   cd $folder
-  for branch in $(git branch -r | grep -v 'origin\/HEAD' | awk '{ print $1 }' | sed 's/origin\///g'); do                                          
-    git checkout -B $branch origin/$branch                                                                                                        
-    git pull origin $branch                                                                                                                       
-  done; 
 
   #change the remote git server and push
-  git remote set-url origin ${repos[$x2]}
-  git push -u --all
+  git remote add mirror ${repos[$x2]}
+  git push --all --prune mirror
+  git push --tags --prune mirror
   cd ..
 done
